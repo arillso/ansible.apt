@@ -147,8 +147,6 @@ apt_unattended_upgrades_automatic_reboot_time: now
     - arillso.apt
 ```
 
-## Changelog
-
 ## Author
 
 - [Simon Bärlocher](https://sbaerlocher.ch)
