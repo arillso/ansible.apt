@@ -11,3 +11,5 @@
     mode: 0644
   vars:
     conf: '{{ apt_loop_template.value }}{{ apt_loop_template.name | lower }}'
+  tags:
+    - configuration

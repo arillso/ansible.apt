@@ -5,11 +5,15 @@
   apt:
     name: apt-transport-https
     state: present
+  tags:
+    - packages
 
 - name: 'install unattended-upgrades'
   apt:
     pkg: 'unattended-upgrades'
     state: "{{ 'latest' if apt_unattended_upgrades else 'absent' }}"
+  tags:
+    - packages
 
 - name: 'include templates generate'
   include_tasks: templates.yml
@@ -22,6 +26,8 @@
       value: '10'
   loop_control:
     loop_var: apt_loop_template
+  tags:
+    - configuration
 
 - name: 'include templates generate'
   include_tasks: templates.yml
@@ -32,3 +38,5 @@
       when: '{{ apt_unattended_upgrades }}'
   loop_control:
     loop_var: apt_loop_template
+  tags:
+    - configuration

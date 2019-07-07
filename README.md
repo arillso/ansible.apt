@@ -4,7 +4,7 @@
 
 ## Description
 
-Configures APT under Debian and Ubuntu.
+This role optimizes the package manager apt and sets various settings of the paketmanger under Debian/Ubuntu.
 
 ## Installation
 
@@ -161,4 +161,4 @@ This project is under the MIT License. See the [LICENSE](https://sbaerlo.ch/lice
 
 ## Copyright
 
-(c) 2019, Simon Bärlocher
+(c) 2019, Arillso

@@ -2,8 +2,7 @@
 galaxy_info:
   role_name: apt
   author: arillso
-  description: Configures APT under Debian and Ubuntu.
-
+  description: Configures apt on Debian and Ubuntu systems.
   license: MIT
   min_ansible_version: 2.8
   platforms:
