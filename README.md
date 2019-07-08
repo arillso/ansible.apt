@@ -4,7 +4,7 @@
 
 ## Description
 
-This role optimizes the package manager apt and sets various settings of the paketmanger under Debian/Ubuntu.
+This role optimizes the package manager apt and under Debian/Ubuntu. It can be determined how long the packages will be cached, how often he should check for updates and when he should install the updates automatically.
 
 ## Installation
 
