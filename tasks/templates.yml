@@ -1,0 +1,15 @@
+---
+# tasks file for arillso.apt
+
+- name: 'Create {{ apt_loop_template.name }} config'
+  become: true
+  template:
+    src: 'etc/apt/apt.conf.d/{{ conf }}.j2'
+    dest: '/etc/apt/apt.conf.d/{{ conf }}.conf'
+    owner: root
+    group: root
+    mode: 0644
+  vars:
+    conf: '{{ apt_loop_template.value }}{{ apt_loop_template.name | lower }}'
+  tags:
+    - configuration

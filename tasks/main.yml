@@ -1,38 +1,42 @@
 ---
 # tasks file for arillso.apt
 
-- name: add OS specific variables
-  include_vars: "{{ loop_vars }}"
-  with_first_found:
-    - files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}.yml"
-        - "{{ ansible_system }}.yml"
-        - "defaults.yml"
-      paths:
-        - "vars"
-  loop_control:
-    loop_var: loop_vars
+- name: 'install apt-transport-https'
+  apt:
+    name: apt-transport-https
+    state: present
   tags:
-    - configuration
     - packages
 
-- name: include distribution tasks
-  include_tasks: "{{ loop_distribution }}"
-  with_first_found:
-    - files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}.yml"
-        - "{{ ansible_system }}.yml"
-        - "defaults.yml"
-      paths:
-        - "distribution"
+- name: 'install unattended-upgrades'
+  apt:
+    pkg: 'unattended-upgrades'
+    state: "{{ 'latest' if apt_unattended_upgrades else 'absent' }}"
+  tags:
+    - packages
+
+- name: 'include templates generate'
+  include_tasks: templates.yml
+  with_items:
+    - name: 'General'
+      value: '10'
+    - name: 'Periodic'
+      value: '10'
+    - name: 'Archives'
+      value: '10'
   loop_control:
-    loop_var: loop_distribution
+    loop_var: apt_loop_template
   tags:
     - configuration
-    - packages
+
+- name: 'include templates generate'
+  include_tasks: templates.yml
+  when: apt_loop_template.when is defined and apt_loop_template.when
+  with_items:
+    - name: 'Unattended-upgrades'
+      value: '50'
+      when: '{{ apt_unattended_upgrades }}'
+  loop_control:
+    loop_var: apt_loop_template
+  tags:
+    - configuration
