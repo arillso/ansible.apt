@@ -1,6 +1,10 @@
 # Ansible Role: apt
 
-[![Build Status](https://img.shields.io/travis/arillso/ansible.apt.svg?branch=master&style=popout-square)](https://travis-ci.org/arillso/ansible.apt) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square)](https://sbaerlo.ch/licence) [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-apt-blue.svg?style=popout-square)](https://galaxy.ansible.com/arillso/apt) [![Ansible Role](https://img.shields.io/ansible/role/d/id.svg?style=popout-square)](https://galaxy.ansible.com/arillso/apt)
+## Important Update
+
+Please note that the ansible.users role has been moved to a new collection and will no longer be actively developed in this repository.
+For the latest version of the role, including new features and updates, please visit the new collection at <https://github.com/arillso/ansible.system/tree/main/roles/apt_configuration>.
+We encourage all users to switch to the updated role in the new collection for ongoing support and improvements.
 
 ## Description
 
@@ -106,7 +110,7 @@ Split the upgrade into the smallest possible chunks so that they can be interrup
 apt_unattended_upgrades_minimal_steps: 'no'
 ```
 
-Send email to this address for problems or packages upgrades If empty or unset then no email is sent, make sure that you have a working mail setup on your system. A package that provides 'mailx' must be installed. E.g. "user@example.com"
+Send email to this address for problems or packages upgrades If empty or unset then no email is sent, make sure that you have a working mail setup on your system. A package that provides 'mailx' must be installed. E.g. "<user@example.com>"
 
 ```yml
 apt_mails: []
